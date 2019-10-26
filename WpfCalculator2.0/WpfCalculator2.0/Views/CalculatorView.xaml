@@ -250,7 +250,7 @@
                     Grid.Column="0"
                     Content="*"                   
                     Style="{StaticResource ButtonStyle2}"
-                    Command="{Binding ButtonOperationCommand}" 
+                    Command="{Binding ButtonAddOperationCommand}" 
                     CommandParameter="*"></Button>
             <Button 
                     Grid.Row="3"
