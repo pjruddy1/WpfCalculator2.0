@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCalculator2._0.Views"
         xmlns:viewModels="clr-namespace:WpfCalculator2._0.ViewModels"
         mc:Ignorable="d"
-        Title="CalculatorView" Height="450" Width="800">
+        Title="CalculatorView" MinHeight="450" MinWidth="800" MaxHeight="450" MaxWidth="800">
 
     <Window.DataContext>
         <viewModels:CalculatorViewModel/>
@@ -133,6 +133,7 @@
 
     <Grid
         Background="SlateGray">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition
                 Width="*"></ColumnDefinition>
@@ -152,10 +153,11 @@
             <RowDefinition
                 Height="0.1*"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <TextBox
             Grid.Row="1"
             Grid.Column="1"
-            Grid.ColumnSpan="5"
+            Grid.ColumnSpan="4"
             Margin="5"
             Text="{Binding DisplayContent}"
             IsReadOnly="True"/>

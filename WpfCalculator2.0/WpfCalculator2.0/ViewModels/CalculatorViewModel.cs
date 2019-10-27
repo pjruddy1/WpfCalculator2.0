@@ -106,7 +106,7 @@ namespace WpfCalculator2._0.ViewModels
                 {
                     DisplayContent += obj.ToString();
                 }
-                else if (UnaryOperations.ContainsValue(operation))
+                else if (UnaryOperations.ContainsValue(operation) && double.TryParse(DisplayContent, out double nonResult))
                 {
                     _operand1 = result;
                     DisplayContent = ProcessUnaryOperation(operation).ToString();
@@ -129,17 +129,15 @@ namespace WpfCalculator2._0.ViewModels
         /// <param name="obj"></param>
         private void PerformCalculation(object obj)
         {
-            try
+            
+             Expression e = new Expression(DisplayContent);
+            if (!e.HasErrors())
             {
-                Expression e = new Expression(DisplayContent);
-                if (!e.HasErrors())
-                {
-                    DisplayContent = e.Evaluate().ToString();
-                }
+                DisplayContent = e.Evaluate().ToString();
             }
-            catch (EvaluationException e)
+            else
             {
-                DisplayContent = "Error: " + e.Message;
+                DisplayContent = "Invalid Operation, Put Operations in Correct Order!";
             }
             
         }
@@ -190,6 +188,7 @@ namespace WpfCalculator2._0.ViewModels
         /// <returns></returns>
         private double ProcessUnaryOperation(Operation operation)
         {
+
             switch (operation)
             {
                 case Operation.Sin:
